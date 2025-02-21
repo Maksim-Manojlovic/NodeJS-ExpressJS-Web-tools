@@ -142,3 +142,45 @@ input:checked + .slider:before {
 .select-all:hover {
     background-color: #3e8e41;
 }
+
+/* nav-bar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #333;
+    color: white;
+    width: 100%; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+body {
+    margin: 0; 
+    padding-top: 60px;
+}
+.logo img {
+    height: 40px;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+.nav-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 5%;
+ 
+}
