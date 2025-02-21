@@ -17,3 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
         formatButtons.style.display = this.checked ? "block" : "none";
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("/nav-bar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
+        })
+        .catch(error => console.error("Error loading navbar:", error));
+});
