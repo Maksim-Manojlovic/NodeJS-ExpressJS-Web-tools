@@ -2,7 +2,7 @@ const http = require('http')
 const {readFileSync} = require('fs');
 
 //get all files 
-const homePage = readFileSync('./index.html')
+const homePage = readFileSync('./public/index.html')
 const homeStyles = readFileSync('./style.css')
 const homeLogic = readFileSync('./script.js')
 
