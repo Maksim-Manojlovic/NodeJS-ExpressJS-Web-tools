@@ -5,6 +5,7 @@ const {readFileSync} = require('fs');
 const homePage = readFileSync('./public/index.html')
 const homeStyles = readFileSync('./style.css')
 const homeLogic = readFileSync('./script.js')
+const navbar = readFileSync('./nav-bar.html');
 
 //request,response
 const server = http.createServer((req,res)=> {
@@ -25,6 +26,13 @@ res.writeHead(200, {'content-type' : ' text/css'})
 res.write(homeStyles);
 res.end()
 }
+
+//nav-bar
+else if(url === '/nav-bar.html') {
+    res.writeHead(200, {'content-type' : ' text/html'})
+    res.write(navbar);
+    res.end()
+    }
 
 // //logo
 // else if(url === '/logo.svg') {
