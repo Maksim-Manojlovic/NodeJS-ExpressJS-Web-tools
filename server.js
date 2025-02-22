@@ -5,7 +5,7 @@ const {readFileSync} = require('fs');
 const homePage = readFileSync('./public/index.html')
 const homeStyles = readFileSync('./style.css')
 const homeLogic = readFileSync('./script.js')
-const navbar = readFileSync('./nav-bar.html');
+const navbar = readFileSync('./public/nav-bar.html');
 
 //request,response
 const server = http.createServer((req,res)=> {
