@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("JavaScript učitan!"); // Provera
+    console.log("JavaScript učitan!"); 
 
     const toggleSwitch = document.getElementById("toggleSwitch");
     const formatButtons = document.getElementById("formatButtons");
@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    // Postavljamo podrazumevano stanje (da li treba biti prikazano ili ne)
+    
     formatButtons.style.display = toggleSwitch.checked ? "block" : "none";
 
     toggleSwitch.addEventListener("change", function() {
-        console.log("Slajder promenjen:", this.checked); // Provera
+        console.log("Slajder promenjen:", this.checked); 
         formatButtons.style.display = this.checked ? "block" : "none";
     });
 });

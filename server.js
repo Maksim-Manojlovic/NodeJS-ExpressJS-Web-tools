@@ -1,12 +1,13 @@
 const http = require('http')
+const path = require('path');
 const {readFileSync} = require('fs');
 
 //get all files 
 const homePage = readFileSync('./public/index.html')
-const homeStyles = readFileSync('./style.css')
+const homeStyles = readFileSync('./public/style.css')
 const homeLogic = readFileSync('./script.js')
-const navbar = readFileSync('./public/nav-bar.html');
-
+const navbar = readFileSync('./public/nav-bar.html')
+const tailwindcss = readFileSync(path.join(__dirname, 'dist', 'output.css'));
 //request,response
 const server = http.createServer((req,res)=> {
 
@@ -26,6 +27,14 @@ res.writeHead(200, {'content-type' : ' text/css'})
 res.write(homeStyles);
 res.end()
 }
+
+//tailwindcss
+else if(url === '/output.css') {
+    res.writeHead(200, {'content-type' : ' text/css'})
+    res.write(tailwindcss);
+    res.end()
+    }
+
 
 //nav-bar
 else if(url === '/nav-bar.html') {
