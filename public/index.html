@@ -29,10 +29,13 @@
             <h1>Smart AVIF, WebP, PNG and JPEG Compression for Faster Websites</h1>
         </div>
 
-    <div class="upload-container">
-        <div class="drop-zone">
-            <p>Drop your images here!<br> <span>Up to 20 images, max 5 MB each.</span></p>
-        </div>
+    <div id="uploadForm" enctype="multipart/form-data" class="upload-container">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="image" accept="image/*">
+            <button type="submit">Upload & Optimize</button>
+        </form>
+        <div id="output"></div>
+        
 
         <div class="options">
             <label class="switch">

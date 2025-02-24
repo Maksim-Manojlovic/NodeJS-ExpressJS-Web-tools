@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("JavaScript učitan!"); 
+    console.log("JavaScript working!"); 
 
     const toggleSwitch = document.getElementById("toggleSwitch");
     const formatButtons = document.getElementById("formatButtons");
 
     if (!toggleSwitch || !formatButtons) {
-        console.error("Elementi nisu pronađeni!");
+        console.error("Elements not found!");
         return;
     }
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     formatButtons.style.display = toggleSwitch.checked ? "block" : "none";
 
     toggleSwitch.addEventListener("change", function() {
-        console.log("Slajder promenjen:", this.checked); 
+        console.log("Slider changed:", this.checked); 
         formatButtons.style.display = this.checked ? "block" : "none";
     });
 });
@@ -26,4 +26,34 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("navbar-container").innerHTML = data;
         })
         .catch(error => console.error("Error loading navbar:", error));
+});
+
+
+document.getElementById('uploadForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const fileInput = document.getElementById('fileInput');
+    if (!fileInput.files.length) {
+        alert('Please select an image first.');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', fileInput.files[0]);
+
+    const response = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.url) {
+        document.getElementById('output').innerHTML = `
+            <p>Optimized Image:</p>
+            <img src="${result.url}" alt="Optimized Image">
+        `;
+    } else {
+        alert('Image processing failed.');
+    }
 });
