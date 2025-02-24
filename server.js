@@ -17,7 +17,7 @@ if (!fs.existsSync(optimizedDir)) fs.mkdirSync(optimizedDir);
 // 🔹 SERVIRANJE STATIČKIH FAJLOVA
 const homePage = fs.readFileSync('./public/index.html');
 const homeStyles = fs.readFileSync('./public/style.css');
-const homeLogic = fs.readFileSync('./script.js');
+const homeLogic = fs.readFileSync('./public/script.js');
 const navbar = fs.readFileSync('./public/nav-bar.html');
 const tailwindcss = fs.readFileSync(path.join(__dirname, 'dist', 'output.css'));
 
@@ -55,37 +55,16 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 app.use('/optimized', express.static(path.join(__dirname, 'optimized')));
 
 // 🔹 HTTP SERVER ZA PRIKAZ STATIČKIH FAJLOVA
-const server = http.createServer((req, res) => {
-    const url = req.url;
 
-    if (url === '/') {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(homePage);
-        res.end();
-    } else if (url === '/styles.css') {
-        res.writeHead(200, { 'Content-Type': 'text/css' });
-        res.write(homeStyles);
-        res.end();
-    } else if (url === '/output.css') {
-        res.writeHead(200, { 'Content-Type': 'text/css' });
-        res.write(tailwindcss);
-        res.end();
-    } else if (url === '/nav-bar.html') {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(navbar);
-        res.end();
-    } else if (url === '/script.js') {
-        res.writeHead(200, { 'Content-Type': 'text/javascript' });
-        res.write(homeLogic);
-        res.end();
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.write('<h1>Page not found</h1>');
-        res.end();
-    }
-});
+app.use(express.static('./public'))
+app.use(express.static('./dist'))
+
+
+app.all('*', (req,res) => {
+    res.status(404).send('resource not found')
+})
 
 // 🔹 POKRETANJE SERVERA
-server.listen(5000, () => {
+app.listen(5000, () => {
     console.log('Server running at http://localhost:5000');
 });
