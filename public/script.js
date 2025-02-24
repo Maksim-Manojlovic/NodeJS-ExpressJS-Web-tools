@@ -33,6 +33,9 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
     e.preventDefault();
 
     const fileInput = document.getElementById('fileInput');
+    const downloadBtn = document.getElementById('downloadBtn'); 
+    const outputDiv = document.getElementById('output');
+
     if (!fileInput.files.length) {
         alert('Please select an image first.');
         return;
@@ -49,10 +52,15 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
     const result = await response.json();
 
     if (result.url) {
-        document.getElementById('output').innerHTML = `
+        // Prikazuje optimizovanu sliku
+        outputDiv.innerHTML = `
             <p>Optimized Image:</p>
             <img src="${result.url}" alt="Optimized Image">
         `;
+
+        // Postavlja link za preuzimanje i prikazuje dugme
+        downloadBtn.href = result.url;
+        downloadBtn.hidden = false;
     } else {
         alert('Image processing failed.');
     }
