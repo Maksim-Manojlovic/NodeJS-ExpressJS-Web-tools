@@ -64,6 +64,9 @@ app.all('*', (req,res) => {
     res.status(404).send('resource not found')
 })
 
+
+
+
 // 🔹 POKRETANJE SERVERA
 app.listen(5000, () => {
     console.log('Server running at http://localhost:5000');
