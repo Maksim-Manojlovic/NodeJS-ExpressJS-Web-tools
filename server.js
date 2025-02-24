@@ -17,7 +17,7 @@ if (!fs.existsSync(optimizedDir)) fs.mkdirSync(optimizedDir);
 // 🔹 SERVIRANJE STATIČKIH FAJLOVA
 const homePage = fs.readFileSync('./public/index.html');
 const homeStyles = fs.readFileSync('./public/style.css');
-const homeLogic = fs.readFileSync('./script.js');
+const homeLogic = fs.readFileSync('./public/script.js');
 const navbar = fs.readFileSync('./public/nav-bar.html');
 const tailwindcss = fs.readFileSync(path.join(__dirname, 'dist', 'output.css'));
 
