@@ -36,8 +36,7 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
     const fileInput = document.getElementById('fileInput');
     const downloadBtn = document.getElementById('downloadBtn'); 
     const outputDiv = document.getElementById('output');
-
-    if (!fileInput.files.length) {
+     if (!fileInput.files.length) {
         alert('Please select an image first.');
         return;
     }
@@ -56,9 +55,17 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
         
         outputDiv.innerHTML = `
             <p>Optimized Image:</p>
-            <img src="${result.url}" alt="Optimized Image">
+            <img src="${result.url}" alt="Optimized Image" class="optimized-image"> 
         `;
 
+        setTimeout(() => {
+            const img = document.getElementById("optimizedImage");
+            if (img) {
+                img.style.width = "90%";  // Ograničava širinu
+                img.style.height = "auto"; // Održava proporcije
+                img.style.objectFit = "contain"; 
+            }
+        }, 100);
         
         downloadBtn.href = result.url;
         downloadBtn.hidden = false;
