@@ -7,6 +7,9 @@ body {
   @apply flex justify-center items-center h-screen bg-gradient-to-b from-blue-100 to-blue-300 m-0 font-sans;
 }
 
+#uploadBtn {
+ @apply border-spacing-1 rounded-lg bg-blue-950 p-2 text-white; 
+}
 
 .container {
   @apply flex w-4/5 max-w-screen-lg items-center;
@@ -62,7 +65,7 @@ p span {
 }
 
 input:checked + .slider {
-  @apply bg-green-500;
+  @apply bg-blue-950;
 }
 
 input:checked + .slider:before {
@@ -79,5 +82,5 @@ input:checked + .slider:before {
 }
 
 .select-all {
-  @apply bg-green-500 text-white hover:bg-green-700;
+  @apply bg-blue-950 text-white hover:bg-blue-950;
 }

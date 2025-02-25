@@ -14,12 +14,6 @@ const optimizedDir = path.join(__dirname, 'optimized');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 if (!fs.existsSync(optimizedDir)) fs.mkdirSync(optimizedDir);
 
-// 🔹 SERVIRANJE STATIČKIH FAJLOVA
-const homePage = fs.readFileSync('./public/index.html');
-const homeStyles = fs.readFileSync('./public/style.css');
-const homeLogic = fs.readFileSync('./public/script.js');
-const navbar = fs.readFileSync('./public/nav-bar.html');
-const tailwindcss = fs.readFileSync(path.join(__dirname, 'dist', 'output.css'));
 
 // 🔹 POSTAVLJANJE MULTER ZA UPLOAD
 const storage = multer.diskStorage({
@@ -58,6 +52,7 @@ app.use('/optimized', express.static(path.join(__dirname, 'optimized')));
 
 app.use(express.static('./public'))
 app.use(express.static('./dist'))
+app.use(express.static('./images'))
 
 
 app.all('*', (req,res) => {

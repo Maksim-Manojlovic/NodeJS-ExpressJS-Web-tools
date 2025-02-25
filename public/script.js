@@ -96,4 +96,3 @@ function displayImageInfo(file) {
     reader.readAsDataURL(file);
 }
 
-
