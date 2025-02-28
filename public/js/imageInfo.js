@@ -1,5 +1,3 @@
-
-
 // Event listener to display image attributes when a file is selected
 document.getElementById('fileInput').addEventListener('change', function () {
     if (this.files.length === 0) return;
