@@ -19,15 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// Loads the navigation bar dynamically from an external HTML file
-document.addEventListener("DOMContentLoaded", () => {
-    fetch("/nav-bar.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("navbar-container").innerHTML = data;
-        })
-        .catch(error => console.error("Error loading navbar:", error));
-});
+
 
 // Handles the image upload and optimization process
 document.getElementById('uploadForm').addEventListener('submit', async function (e) {
