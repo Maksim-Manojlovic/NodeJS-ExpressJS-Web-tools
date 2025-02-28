@@ -1,26 +1,3 @@
-// Waits for the DOM to be fully loaded before executing the script
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("JavaScript working!"); 
-
-    const toggleSwitch = document.getElementById("toggleSwitch");
-    const formatButtons = document.getElementById("formatButtons");
-
-    if (!toggleSwitch || !formatButtons) {
-        console.error("Elements not found!");
-        return;
-    }
-
-    
-    formatButtons.style.display = toggleSwitch.checked ? "block" : "none";
-
-    toggleSwitch.addEventListener("change", function() {
-        console.log("Slider changed:", this.checked); 
-        formatButtons.style.display = this.checked ? "block" : "none";
-    });
-});
-
-
-
 // Handles the image upload and optimization process
 document.getElementById('uploadForm').addEventListener('submit', async function (e) {
     e.preventDefault();
