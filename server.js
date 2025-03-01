@@ -48,6 +48,7 @@ app.use('/optimized', express.static(path.join(__dirname, 'optimized')));
 
 
 app.use(express.static('./public'))
+app.use(express.static('./public/pages'))
 app.use(express.static('./dist'))
 app.use(express.static('./images'))
 
