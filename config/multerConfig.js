@@ -5,7 +5,6 @@ const fs = require('fs');
 const uploadDir = path.join(__dirname, '../uploads');
 const optimizedDir = path.join(__dirname, '../optimized');
 
-// Kreiranje direktorijuma ako ne postoji
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 if (!fs.existsSync(optimizedDir)) fs.mkdirSync(optimizedDir);
 
