@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: formData
             });
 
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.status} ${response.statusText}`);
+            }
+
             const result = await response.json();
             outputDiv.innerHTML = `
                 <p><strong>Number of Pages:</strong> ${result.numPages}</p>
