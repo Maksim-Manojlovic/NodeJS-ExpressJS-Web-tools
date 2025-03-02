@@ -10,8 +10,9 @@ const PORT = process.env.PORT || 5000;
 
 setupStaticFiles(app);
 
-
+app.use(express.static('public'));
 app.use('/upload', uploadRoutes);
+app.use(express.static('dist'));
 
 
 app.all('*', (req, res) => {
