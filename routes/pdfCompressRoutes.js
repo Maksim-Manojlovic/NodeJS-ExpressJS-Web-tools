@@ -1,28 +1,34 @@
 const express = require("express");
-const pdfCompressor = require("../utils/pdfCompressor");
-const multer = require("multer");
-
 const router = express.Router();
+const multer = require("multer");
+const path = require("path");
+const compressPDF = require("../utils/pdfCompressor");
+const fs = require("fs");
+
 const upload = multer({ dest: "uploads/" });
 
 router.post("/", upload.single("pdf"), async (req, res) => {
     if (!req.file) {
-        return res.status(400).json({ error: "No file uploaded" });
+        return res.status(400).json({ success: false, error: "No file uploaded" });
     }
 
-    try {
-        const compressedPdf = await pdfCompressor.compressPDF(req.file.path);
+    const inputPath = req.file.path;
+    const outputPath = path.join("uploads", `compressed-${req.file.filename}.pdf`);
+
+    const result = await compressPDF(inputPath, outputPath);
+
+    if (result.success) {
         res.json({
-            message: "PDF compressed successfully",
-            originalSize: compressedPdf.originalSize,
-            compressedSize: compressedPdf.compressedSize,
-            savedPercentage: compressedPdf.savedPercentage,
-            downloadUrl: `/uploads/${compressedPdf.fileName}`
+            success: true,
+            originalSize: result.originalSize,
+            compressedSize: result.compressedSize,
+            savedPercentage: result.savedPercentage,
+            downloadUrl: `/download/${path.basename(outputPath)}`
         });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Failed to compress PDF" });
+    } else {
+        res.status(500).json({ success: false, error: result.error });
     }
 });
+
 
 module.exports = router;
