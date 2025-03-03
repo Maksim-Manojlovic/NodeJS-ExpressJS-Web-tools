@@ -3,7 +3,7 @@ const pdfParse = require("pdf-parse");
 const multer = require("multer");
 
 const router = express.Router();
-const upload = multer(); // Koristimo memorijsko skladištenje za PDF
+const upload = multer(); 
 
 router.post("/", upload.single("pdf"), async (req, res) => {
     if (!req.file) {
@@ -15,8 +15,8 @@ router.post("/", upload.single("pdf"), async (req, res) => {
         res.json({
             numPages: data.numpages,
             wordCount: data.text.split(/\s+/).length,
-            tableOfContents: [], // Ovaj deo možeš unaprediti
-            imageCount: 0 // Treba dodatna logika za brojanje slika
+            tableOfContents: [], 
+            imageCount: 0 
         });
     } catch (err) {
         console.error(err);
