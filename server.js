@@ -1,27 +1,33 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+
 const uploadRoutes = require('./routes/uploadRoutes');
 const setupStaticFiles = require('./middleware/staticFiles');
-
-const app = express();
-const PORT = process.env.PORT || 5000;
 const pdfRoutes = require("./routes/pdfRoutes");
 const pdfCompressRoutes = require("./routes/pdfCompressRoutes");
 const downloadCompressRoutes = require("./routes/downloadCompressRoutes");
 
-setupStaticFiles(app);
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.use("/download", downloadCompressRoutes);
+// Middleware setup
+setupStaticFiles(app);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files
+app.use(express.static('public'));
+app.use(express.static('dist'));
+
+// API Routes
+app.use("/download", downloadCompressRoutes);
 app.use("/compress", pdfCompressRoutes);
 app.use("/pdf", pdfRoutes);
-app.use(express.static('public'));
 app.use('/upload', uploadRoutes);
-app.use(express.static('dist'));
 app.use("/extract", pdfRoutes);
 
+// Catch-all route for 404 errors
 app.all('*', (req, res) => {
     res.status(404).send('Resource not found');
 });
