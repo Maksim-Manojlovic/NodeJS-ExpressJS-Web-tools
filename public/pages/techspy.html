@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSpy - Technology Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+</head>
+
+<div id="navbar-container"></div>
+<body class="bg-gradient-to-b from-blue-100 to-blue-300 flex items-center justify-center min-h-screen">
+    <section class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+        <h2 class="text-3xl font-bold mb-6">TechSpy - Detect Technologies</h2>
+        <input id="urlInput" type="text" placeholder="Enter website URL"
+            class="w-full border rounded-lg px-4 py-2 mb-4">
+        <button id="analyzeBtn" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+            Analyze
+        </button>
+        <div id="result" class="mt-6 bg-gray-50 p-4 rounded-lg shadow text-left"></div>
+    </section>
+    <script src="../js/techSpy.js"></script>
+    <script src="js/nav-bar.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ const setupStaticFiles = require('./middleware/staticFiles');
 const pdfRoutes = require("./routes/pdfRoutes");
 const pdfCompressRoutes = require("./routes/pdfCompressRoutes");
 const downloadCompressRoutes = require("./routes/downloadCompressRoutes");
+const techSpyRoutes = require('./routes/techSpyRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +27,7 @@ app.use("/compress", pdfCompressRoutes);
 app.use("/pdf", pdfRoutes);
 app.use('/upload', uploadRoutes);
 app.use("/extract", pdfRoutes);
+app.use("/techspy", techSpyRoutes);
 
 // Catch-all route for 404 errors
 app.all('*', (req, res) => {
