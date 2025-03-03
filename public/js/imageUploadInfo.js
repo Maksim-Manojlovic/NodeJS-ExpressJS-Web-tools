@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             document.getElementById("landing-page").innerHTML = data;
             
-            // Tek nakon što je landing-page.html učitan, dodaj event listenere
+            
             setupEventListeners();
         })
         .catch(error => console.error("Error loading landing page:", error));
@@ -68,7 +68,7 @@ function setupEventListeners() {
     }
 }
 
-// Funkcija za prikazivanje informacija o slici
+
 function displayImageInfo(file) {
     const reader = new FileReader();
     const imageInfoDiv = document.getElementById('imageInfo');
