@@ -2,9 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 
-const uploadRoutes = require('./routes/uploadRoutes');
+
 const setupStaticFiles = require('./middleware/staticFiles');
-const pdfRoutes = require("./routes/pdfRoutes");
 const pdfCompressRoutes = require("./routes/pdfCompressRoutes");
 const downloadCompressRoutes = require("./routes/downloadCompressRoutes");
 const techSpyRoutes = require('./routes/techSpyRoutes');
@@ -33,7 +32,7 @@ app.use(express.static('dist'));
 app.use("/download", downloadCompressRoutes);
 app.use("/compress", pdfCompressRoutes);
 
-app.use('/upload', uploadRoutes);
+
 
 app.use("/techspy", techSpyRoutes);
 app.use("/analyze", analyzeRoutes);
