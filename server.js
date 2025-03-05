@@ -10,6 +10,9 @@ const downloadCompressRoutes = require("./routes/downloadCompressRoutes");
 const techSpyRoutes = require('./routes/techSpyRoutes');
 const analyzeRoutes = require("./routes/analyzeRoutes");
 
+const routes = require("./routes/SoftLogicRoutes");
+
+
 const cors = require("cors");
 
 
@@ -29,11 +32,13 @@ app.use(express.static('dist'));
 // API Routes
 app.use("/download", downloadCompressRoutes);
 app.use("/compress", pdfCompressRoutes);
-app.use("/pdf", pdfRoutes);
+
 app.use('/upload', uploadRoutes);
-app.use("/extract", pdfRoutes);
+
 app.use("/techspy", techSpyRoutes);
 app.use("/analyze", analyzeRoutes);
+
+app.use("/", routes);
 
 // Catch-all route for 404 errors
 app.all('*', (req, res) => {
