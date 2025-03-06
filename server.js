@@ -4,8 +4,8 @@ const path = require('path');
 
 
 const setupStaticFiles = require('./middleware/staticFiles');
-const pdfCompressRoutes = require("./routes/pdfCompressRoutes");
-const downloadCompressRoutes = require("./routes/downloadCompressRoutes");
+
+
 const techSpyRoutes = require('./routes/techSpyRoutes');
 const analyzeRoutes = require("./routes/analyzeRoutes");
 
@@ -29,8 +29,7 @@ app.use(express.static('public'));
 app.use(express.static('dist'));
 
 // API Routes
-app.use("/download", downloadCompressRoutes);
-app.use("/compress", pdfCompressRoutes);
+
 
 
 

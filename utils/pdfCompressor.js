@@ -1,32 +1,22 @@
-const fs = require("fs");
-const { PDFDocument } = require("pdf-lib"); 
-const path = require("path");
+const pdfLib = require("pdf-lib");
 
-async function compressPDF(inputPath, outputPath) {
+const compressPDF = async (inputBuffer) => {
     try {
-        const existingPdfBytes = fs.readFileSync(inputPath);
-        const pdfDoc = await PDFDocument.load(existingPdfBytes);
-
-        pdfDoc.setCreator("Optimized PDF Compressor");
-
-        const compressedPdfBytes = await pdfDoc.save();
-
-        fs.writeFileSync(outputPath, compressedPdfBytes);
-
-        const originalSize = fs.statSync(inputPath).size / 1024; // KB
-        const compressedSize = fs.statSync(outputPath).size / 1024; // KB
-        const savedPercentage = ((originalSize - compressedSize) / originalSize * 100).toFixed(2);
-
-        return { 
-            success: true, 
-            compressedSize: compressedSize.toFixed(2), 
-            originalSize: originalSize.toFixed(2),
-            savedPercentage: savedPercentage
+        const pdfDoc = await pdfLib.PDFDocument.load(inputBuffer);
+        
+        const compressedBytes = await pdfDoc.save();
+       
+        return {
+            success: true,
+            originalSize: inputBuffer.length,
+            compressedSize: compressedBytes.length,
+            savedPercentage: ((inputBuffer.length - compressedBytes.length) / inputBuffer.length) * 100,
+            compressedBuffer: Buffer.from(compressedBytes) 
         };
-    } catch (error) {
-        console.error("Error compressing PDF:", error);
-        return { success: false, error: error.message };
+    } catch (err) {
+        console.error("Error compressing PDF:", err);
+        return { success: false, error: err.message };
     }
-}
+};
 
 module.exports = compressPDF;
