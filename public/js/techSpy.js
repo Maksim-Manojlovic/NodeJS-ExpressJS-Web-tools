@@ -1,7 +1,8 @@
 document.getElementById('analyzeBtn').addEventListener('click', async () => {
-    const url = document.getElementById('urlInput').value;
-    const resultDiv = document.getElementById('result');
+    const urlInput = document.getElementById('urlInput').value;
+    const url = urlInput.startsWith('http') ? urlInput : `https://${urlInput}`;
 
+    const resultDiv = document.getElementById('result');
     if (!url) {
         resultDiv.innerHTML = `<p class="text-red-500">Please enter a URL.</p>`;
         return;
