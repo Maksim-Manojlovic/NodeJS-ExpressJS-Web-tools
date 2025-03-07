@@ -29,10 +29,6 @@ app.use(express.static('public'));
 app.use(express.static('dist'));
 
 // API Routes
-
-
-
-
 app.use("/techspy", techSpyRoutes);
 app.use("/analyze", analyzeRoutes);
 
