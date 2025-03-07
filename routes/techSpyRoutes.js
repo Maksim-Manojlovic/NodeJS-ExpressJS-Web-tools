@@ -12,7 +12,13 @@ router.post('/analyze', async (req, res) => {
     try {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
-        await page.goto(url, { waitUntil: 'domcontentloaded' });
+        try {
+            await page.goto(url, { waitUntil: 'networkidle2', timeout: 15000 });
+        } catch (gotoError) {
+            console.error('Puppeteer error while navigating:', gotoError);
+            return res.status(500).json({ error: 'Failed to load the website' });
+        }
+        
 
         
         const title = await page.title();
