@@ -6,7 +6,7 @@ const path = require('path');
 const setupStaticFiles = require('./middleware/staticFiles');
 
 
-const techSpyRoutes = require('./routes/techSpyRoutes');
+
 const analyzeRoutes = require("./routes/analyzeRoutes");
 
 const routes = require("./routes/SoftLogicRoutes");
@@ -29,7 +29,7 @@ app.use(express.static('public'));
 app.use(express.static('dist'));
 
 // API Routes
-app.use("/techspy", techSpyRoutes);
+
 app.use("/analyze", analyzeRoutes);
 
 app.use("/", routes);
