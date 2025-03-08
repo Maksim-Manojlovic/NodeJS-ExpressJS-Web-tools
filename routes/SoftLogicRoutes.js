@@ -6,6 +6,7 @@ const { optimizeImage } = require("../controllers/uploadController");
 const { downloadFile } = require("../controllers/downloadCompressedPDFController");
 const { compressPdf } = require("../controllers/pdfCompressController");
 const { analyzeWebsite } = require("../controllers/techSpyController");
+const { analyzeTechnologies } = require("../controllers/techSpyWapController");
 
 const multerConfig = require("../config/multerConfig");
 const upload = multer();
@@ -25,5 +26,8 @@ router.post("/compress", upload.single("pdf"), compressPdf);
 
 // TechSpy soft
 router.post("/techspy/analyze", analyzeWebsite);
+
+// TechSpyWap soft
+router.get("/analyze", analyzeTechnologies);
 
 module.exports = router;
