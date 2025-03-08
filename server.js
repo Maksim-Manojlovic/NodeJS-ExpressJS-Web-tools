@@ -1,19 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-
+require('events').EventEmitter.defaultMaxListeners = 15;
 
 const setupStaticFiles = require('./middleware/staticFiles');
 
-
-
-const analyzeRoutes = require("./routes/analyzeRoutes");
-
 const routes = require("./routes/SoftLogicRoutes");
 
-
 const cors = require("cors");
-
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,9 +23,6 @@ app.use(express.static('public'));
 app.use(express.static('dist'));
 
 // API Routes
-
-app.use("/analyze", analyzeRoutes);
-
 app.use("/", routes);
 
 // Catch-all route for 404 errors
