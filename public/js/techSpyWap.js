@@ -83,7 +83,6 @@ function getIconClass(name, category) {
         "Site Kit": "fa-brands fa-google"
     };
 
-    // Ako postoji specifična ikonica za tehnologiju, koristimo nju, ako ne, koristimo za kategoriju
     return techIcons[name] || categoryIcons[category] || "fa-solid fa-cube";
 }
 

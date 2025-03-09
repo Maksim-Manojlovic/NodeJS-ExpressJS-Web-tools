@@ -125,7 +125,7 @@ function detectTechnologies($) {
         }
     }
 
-    // Uklanjamo prazne kategorije
+    
     Object.keys(results).forEach(key => {
         if (results[key].length === 0) delete results[key];
     });
