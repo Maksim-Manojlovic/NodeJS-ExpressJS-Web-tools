@@ -12,8 +12,17 @@ exports.analyzeTechnologies = async (req, res) => {
     try {
         const response = await axios.get(url);
         const $ = cheerio.load(response.data);
-        const technologies = detectTechnologies($);
+        let technologies = detectTechnologies($);
 
+        if (Object.keys(technologies).length === 0) {
+            technologies = [];
+        } else {
+            technologies = Object.entries(technologies).map(([category, items]) => ({
+                category,
+                items
+            }));
+        }
+        console.log("Final Response Data:", { url, technologies });
         res.json({
             url,
             technologies
@@ -23,3 +32,5 @@ exports.analyzeTechnologies = async (req, res) => {
         res.status(500).json({ error: "Failed to fetch the website." });
     }
 };
+
+
