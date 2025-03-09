@@ -11,28 +11,26 @@ document.getElementById("analyzeBtn").addEventListener("click", async () => {
     
 });
 
-function displayResults(data, category) {
-    console.log("Received Data:", data);
-    console.log("Category:", category);
-    console.log("Category Data:", data[category]);
+function displayResults(data) {
+    const resultsContainer = document.getElementById("results"); 
+    resultsContainer.innerHTML = ""; 
 
-    if (!data[category] || !Array.isArray(data[category])) {
-        console.error(`Invalid data for category: ${category}`);
+    if (!data.technologies || data.technologies.length === 0) {
+        resultsContainer.innerHTML = "<p>No technologies detected.</p>";
         return;
     }
 
-    let resultsContainer = document.getElementById("results");
-    let section = document.createElement("div");
-    section.innerHTML = `<h3 class="font-bold">${category}</h3>`;
-    
-    data[category].forEach(tech => {
-        let techItem = document.createElement("p");
-        techItem.textContent = tech;
-        section.appendChild(techItem);
+    let html = `<p><strong>URL:</strong> ${data.url}</p>`;
+    html += "<ul>";
+
+    data.technologies.forEach(tech => {
+        html += `<li><strong>${tech.category}:</strong> ${tech.items.join(", ")}</li>`;
     });
 
-    resultsContainer.appendChild(section);
+    html += "</ul>";
+    resultsContainer.innerHTML = html; 
 }
+
 
 
 function getIconClass(category) {
