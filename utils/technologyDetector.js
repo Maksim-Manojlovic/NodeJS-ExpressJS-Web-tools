@@ -12,7 +12,8 @@ function detectTechnologies($) {
         "Web Servers": [],
         "Reverse Proxies": [],
         "Programming Languages": [],
-        "WordPress Plugins": []
+        "WordPress Plugins": [],
+        "Page Builders": []
     };
 
     const scripts = $("script").map((_, el) => $(el).attr("src")).get();
@@ -111,9 +112,22 @@ function detectTechnologies($) {
         results["Programming Languages"].push("PHP");
     }
 
+    // === Page Builders ===
+    const pageBuilders = {
+        "Elementor": "elementor",
+        "Divi": "et-builder",
+        "Oxygen": "oxygen",
+        "WPBakery": "js_composer"
+    };
+
+    for (const [builder, keyword] of Object.entries(pageBuilders)) {
+        if (scripts.some(src => src?.includes(keyword)) || pageHTML.includes(keyword)) {
+            results["Page Builders"].push(builder);
+        }
+    }
+    
     // === WordPress Plugins ===
     const wpPlugins = {
-        "Elementor": "elementor",
         "Akismet": "akismet",
         "Site Kit": "site-kit",
         "Essential Addons for Elementor": "essential-addons-elementor"
