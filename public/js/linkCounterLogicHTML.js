@@ -1,8 +1,13 @@
 async function countLinks() {
-    const url = document.getElementById('urlInput').value;
+    let url = document.getElementById('urlInput').value.trim();
+
     if (!url) {
         alert('Please enter a URL');
         return;
+    }
+
+    if (!/^https?:\/\//i.test(url)) {
+        url = `https://${url}`;
     }
 
     try {
