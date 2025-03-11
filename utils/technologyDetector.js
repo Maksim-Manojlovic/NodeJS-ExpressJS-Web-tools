@@ -12,7 +12,8 @@ function detectTechnologies($) {
         "Web Servers": [],
         "Reverse Proxies": [],
         "Programming Languages": [],
-        "WordPress Plugins": []
+        "WordPress Plugins": [],
+        "Page Builders": []
     };
 
     const scripts = $("script").map((_, el) => $(el).attr("src")).get();
@@ -111,12 +112,41 @@ function detectTechnologies($) {
         results["Programming Languages"].push("PHP");
     }
 
+    // === Page Builders ===
+    const pageBuilders = {
+        "Elementor": "elementor",
+        "Divi": "et-builder",
+        "Oxygen": "oxygen",
+        "WPBakery": "js_composer",
+        "Beaver Builder": "fl-builder",
+        "Brizy": "brz",
+        "Thrive Architect": "thrive-visual-editor",
+        "Visual Composer": "visual-composer",
+        "Cornerstone": "cornerstone",
+        "Zion Builder": "zion-builder"
+    };
+
+    for (const [builder, keyword] of Object.entries(pageBuilders)) {
+        if (scripts.some(src => src?.includes(keyword)) || pageHTML.includes(keyword)) {
+            results["Page Builders"].push(builder);
+        }
+    }
+    
     // === WordPress Plugins ===
     const wpPlugins = {
         "Elementor": "elementor",
         "Akismet": "akismet",
         "Site Kit": "site-kit",
-        "Essential Addons for Elementor": "essential-addons-elementor"
+        "Essential Addons for Elementor": "essential-addons-elementor",
+        "Rank Math SEO": "rank-math",
+        "WooCommerce": "woocommerce",
+        "Contact Form 7": "contact-form-7",
+        "WPForms": "wpforms",
+        "Advanced Custom Fields (ACF)": "acf",
+        "WP Rocket": "wp-rocket",
+        "LiteSpeed Cache": "litespeed-cache",
+        "Jetpack": "jetpack",
+        "WPML": "wpml"
     };
 
     for (const [plugin, keyword] of Object.entries(wpPlugins)) {
