@@ -117,7 +117,13 @@ function detectTechnologies($) {
         "Elementor": "elementor",
         "Divi": "et-builder",
         "Oxygen": "oxygen",
-        "WPBakery": "js_composer"
+        "WPBakery": "js_composer",
+        "Beaver Builder": "fl-builder",
+        "Brizy": "brz",
+        "Thrive Architect": "thrive-visual-editor",
+        "Visual Composer": "visual-composer",
+        "Cornerstone": "cornerstone",
+        "Zion Builder": "zion-builder"
     };
 
     for (const [builder, keyword] of Object.entries(pageBuilders)) {
@@ -128,9 +134,19 @@ function detectTechnologies($) {
     
     // === WordPress Plugins ===
     const wpPlugins = {
+        "Elementor": "elementor",
         "Akismet": "akismet",
         "Site Kit": "site-kit",
-        "Essential Addons for Elementor": "essential-addons-elementor"
+        "Essential Addons for Elementor": "essential-addons-elementor",
+        "Rank Math SEO": "rank-math",
+        "WooCommerce": "woocommerce",
+        "Contact Form 7": "contact-form-7",
+        "WPForms": "wpforms",
+        "Advanced Custom Fields (ACF)": "acf",
+        "WP Rocket": "wp-rocket",
+        "LiteSpeed Cache": "litespeed-cache",
+        "Jetpack": "jetpack",
+        "WPML": "wpml"
     };
 
     for (const [plugin, keyword] of Object.entries(wpPlugins)) {
