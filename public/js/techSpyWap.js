@@ -1,7 +1,23 @@
 document.getElementById("analyzeBtn").addEventListener("click", async () => {
-    const url = document.getElementById("urlInput").value.trim();
+    let url = document.getElementById("urlInput").value.trim();
     if (!url) return alert("Please enter a URL.");
 
+    if (!/^https?:\/\//i.test(url)) {
+        const httpsUrl = `https://${url}`;
+        const httpUrl = `http://${url}`;
+
+        try {
+            const response = await fetch(`/check-url?url=${encodeURIComponent(httpsUrl)}`);
+            const result = await response.json();
+            if (result.exists) {
+                url = httpsUrl;
+            } else {
+                url = httpUrl;
+            }
+        } catch (error) {
+            url = httpUrl; // Ako https ne radi, koristi http
+        }
+    }
     const response = await fetch(`/analyze?url=${encodeURIComponent(url)}`);
     const data = await response.json();
 
