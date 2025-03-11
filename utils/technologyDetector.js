@@ -13,7 +13,8 @@ function detectTechnologies($) {
         "Reverse Proxies": [],
         "Programming Languages": [],
         "WordPress Plugins": [],
-        "Page Builders": []
+        "Page Builders": [],
+        "WordPress Themes": []
     };
 
     const scripts = $("script").map((_, el) => $(el).attr("src")).get();
@@ -155,6 +156,26 @@ function detectTechnologies($) {
         }
     }
 
+    // === WordPress Themes ===
+    const wpThemes = {
+        "Avada": "avada",
+        "Enfold": "enfold",
+        "Divi": "Divi",
+        "Astra": "astra-theme",
+        "OceanWP": "oceanwp",
+        "GeneratePress": "generatepress",
+        "Flatsome": "flatsome",
+        "The7": "the7",
+        "Newspaper": "newspaper",
+        "Bridge": "bridge",
+        "Salient": "salient"
+    };
+
+    for (const [theme, keyword] of Object.entries(wpThemes)) {
+        if (pageHTML.includes(`wp-content/themes/${keyword}`)) {
+            results["WordPress Themes"].push(theme);
+        }
+    }
     
     Object.keys(results).forEach(key => {
         if (results[key].length === 0) delete results[key];
