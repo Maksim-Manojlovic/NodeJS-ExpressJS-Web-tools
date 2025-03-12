@@ -8,6 +8,7 @@ const { compressPdf } = require("../controllers/pdfCompressController");
 const { analyzeWebsite } = require("../controllers/techSpyController");
 const { analyzeTechnologies } = require("../controllers/techSpyWapController");
 const { countLinks } = require('../controllers/linkCounterController');
+const { extractH1 } = require('../controllers/h1ExtractorController');
 
 const multerConfig = require("../config/multerConfig");
 const upload = multer();
@@ -33,5 +34,8 @@ router.get("/analyze", analyzeTechnologies);
 
 //LinkCounter soft
 router.get('/count-links', countLinks);
+
+// H1 Extractor soft
+router.post('/api/extract-h1', extractH1);
 
 module.exports = router;
