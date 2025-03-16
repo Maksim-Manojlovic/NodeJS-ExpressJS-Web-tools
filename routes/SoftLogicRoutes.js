@@ -44,4 +44,5 @@ router.get('/seo-page', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/seo-soft/seo-page.html'));
 });
 
+
 module.exports = router;
