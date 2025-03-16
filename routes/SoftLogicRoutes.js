@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer");
+const path = require("path");
 
 const { extractPdfData } = require("../controllers/pdfController");
 const { optimizeImage } = require("../controllers/uploadController");
@@ -37,5 +38,10 @@ router.get('/count-links', countLinks);
 
 // H1 Extractor soft
 router.post('/api/extract-h1', extractH1);
+
+// SEO Page soft - only frontend interface
+router.get('/seo-page', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/pages/seo-page.html'));
+});
 
 module.exports = router;
