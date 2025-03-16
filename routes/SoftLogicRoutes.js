@@ -41,7 +41,7 @@ router.post('/api/extract-h1', extractH1);
 
 // SEO Page soft - only frontend interface
 router.get('/seo-page', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/pages/seo-page.html'));
+    res.sendFile(path.join(__dirname, '../public/seo-soft/seo-page.html'));
 });
 
 module.exports = router;
