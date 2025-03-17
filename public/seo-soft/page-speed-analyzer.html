@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Speed Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<div id="navbar-container"></div>
+<body class="bg-blue-200">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8 mt-36">Page Speed Analyzer</h1>
+        
+        <div class="flex gap-4 mb-8">
+            <input type="text" 
+                   id="urlInput" 
+                   class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500 text-base"
+                   placeholder="Enter webpage URL (e.g., https://example.com)">
+            <button id="analyzeBtn" 
+                    class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300 font-medium">
+                Analyze Speed
+            </button>
+        </div>
+
+        <div id="loading" class="hidden text-center py-10">
+            <div class="inline-block w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+            <p class="mt-4 text-gray-600">Analyzing page speed...</p>
+        </div>
+
+        <div id="results" class="hidden space-y-8">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Mobile Score</h2>
+                    <div id="mobileScoreValue" class="text-5xl font-bold"></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Desktop Score</h2>
+                    <div id="desktopScoreValue" class="text-5xl font-bold"></div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Core Web Vitals</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h3 class="text-sm font-medium text-gray-600">First Contentful Paint (FCP)</h3>
+                        <div id="fcp" class="text-2xl font-semibold mt-2"></div>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h3 class="text-sm font-medium text-gray-600">Largest Contentful Paint (LCP)</h3>
+                        <div id="lcp" class="text-2xl font-semibold mt-2"></div>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h3 class="text-sm font-medium text-gray-600">Cumulative Layout Shift (CLS)</h3>
+                        <div id="cls" class="text-2xl font-semibold mt-2"></div>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h3 class="text-sm font-medium text-gray-600">First Input Delay (FID)</h3>
+                        <div id="fid" class="text-2xl font-semibold mt-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Recommendations</h2>
+                <ul id="recommendationsList" class="space-y-3">
+                    <!-- Recommendations will be added here dynamically -->
+                </ul>
+            </div>
+        </div>
+
+        <div id="error" class="hidden bg-red-50 text-red-600 p-4 rounded-lg mt-6"></div>
+    </div>
+
+    <script src="/js/nav-bar.js"></script>
+    <script src="../../js/page-speed-analyzer.js"></script>
+
+    <style>
+        .score-good { @apply text-green-500; }
+        .score-average { @apply text-yellow-500; }
+        .score-poor { @apply text-red-500; }
+    </style>
+</body>
+</html>
