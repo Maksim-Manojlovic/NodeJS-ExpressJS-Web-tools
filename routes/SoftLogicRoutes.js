@@ -10,6 +10,7 @@ const { analyzeWebsite } = require("../controllers/techSpyController");
 const { analyzeTechnologies } = require("../controllers/techSpyWapController");
 const { countLinks } = require('../controllers/linkCounterController');
 const { extractH1 } = require('../controllers/h1ExtractorController');
+const { analyzePageSpeed } = require('../controllers/pageSpeedController');
 
 const multerConfig = require("../config/multerConfig");
 const upload = multer();
@@ -44,5 +45,11 @@ router.get('/seo-page', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/seo-soft/seo-page.html'));
 });
 
+// Page Speed Analyzer soft
+router.get('/page-speed-analyzer', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/seo-soft/page-speed-analyzer.html'));
+});
+
+router.post('/api/analyze-speed', analyzePageSpeed);
 
 module.exports = router;
