@@ -31,11 +31,23 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-xl shadow-md p-6 text-center">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Mobile Score</h2>
-                    <div id="mobileScoreValue" class="text-5xl font-bold"></div>
+                    <div class="relative inline-flex justify-center items-center">
+                        <svg class="w-40 h-40 transform -rotate-90">
+                            <circle class="score-circle" cx="80" cy="80" r="70" stroke-width="12" fill="none" />
+                            <circle id="mobileScoreCircle" class="score-progress" cx="80" cy="80" r="70" stroke-width="12" fill="none" />
+                        </svg>
+                        <div id="mobileScoreValue" class="absolute text-5xl font-bold"></div>
+                    </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md p-6 text-center">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Desktop Score</h2>
-                    <div id="desktopScoreValue" class="text-5xl font-bold"></div>
+                    <div class="relative inline-flex justify-center items-center">
+                        <svg class="w-40 h-40 transform -rotate-90">
+                            <circle class="score-circle" cx="80" cy="80" r="70" stroke-width="12" fill="none" />
+                            <circle id="desktopScoreCircle" class="score-progress" cx="80" cy="80" r="70" stroke-width="12" fill="none" />
+                        </svg>
+                        <div id="desktopScoreValue" class="absolute text-5xl font-bold"></div>
+                    </div>
                 </div>
             </div>
 
@@ -79,6 +91,33 @@
         .score-good { @apply text-green-500; }
         .score-average { @apply text-yellow-500; }
         .score-poor { @apply text-red-500; }
+        
+        .score-circle {
+            stroke: #e5e7eb;
+        }
+        
+        .score-progress {
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.8s ease-in-out;
+        }
+        
+        .score-progress.score-good {
+            stroke: #22c55e;
+        }
+        
+        .score-progress.score-average {
+            stroke: #eab308;
+        }
+        
+        .score-progress.score-poor {
+            stroke: #ef4444;
+        }
+
+        #mobileScoreValue, #desktopScoreValue {
+            color: #1f2937;
+        }
     </style>
 </body>
 </html>

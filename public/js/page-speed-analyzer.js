@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileScoreValue = document.getElementById('mobileScoreValue');
     const desktopScoreValue = document.getElementById('desktopScoreValue');
     const recommendationsList = document.getElementById('recommendationsList');
+    const mobileScoreCircle = document.getElementById('mobileScoreCircle');
+    const desktopScoreCircle = document.getElementById('desktopScoreCircle');
 
     const metrics = ['fcp', 'lcp', 'cls', 'fid'];
 
@@ -46,13 +48,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function displayResults(data) {
-        // Display scores
-        mobileScoreValue.textContent = `${Math.round(data.mobile.score)}`;
-        desktopScoreValue.textContent = `${Math.round(data.desktop.score)}`;
+    function updateScoreCircle(score, circleElement, valueElement) {
+        const circumference = 2 * Math.PI * 70; // r = 70
+        const offset = circumference - (score / 100) * circumference;
+        
+        circleElement.style.strokeDasharray = `${circumference}`;
+        circleElement.style.strokeDashoffset = offset;
+        
+        // Uklanjamo postojeće klase
+        circleElement.classList.remove('score-good', 'score-average', 'score-poor');
+        
+        // Dodajemo novu klasu na osnovu skora
+        if (score >= 90) {
+            circleElement.classList.add('score-good');
+        } else if (score >= 50) {
+            circleElement.classList.add('score-average');
+        } else {
+            circleElement.classList.add('score-poor');
+        }
 
-        mobileScoreValue.className = `score-value ${getScoreClass(data.mobile.score)}`;
-        desktopScoreValue.className = `score-value ${getScoreClass(data.desktop.score)}`;
+        // Postavljamo vrednost
+        valueElement.textContent = Math.round(score);
+    }
+
+    function displayResults(data) {
+        // Ažuriramo krugove sa skorovima
+        updateScoreCircle(data.mobile.score, mobileScoreCircle, mobileScoreValue);
+        updateScoreCircle(data.desktop.score, desktopScoreCircle, desktopScoreValue);
 
         // Display metrics
         metrics.forEach(metric => {
