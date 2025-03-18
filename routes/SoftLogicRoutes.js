@@ -40,16 +40,26 @@ router.get('/count-links', countLinks);
 // H1 Extractor soft
 router.post('/api/extract-h1', extractH1);
 
+// Page Speed Analyzer soft
+router.get('/page-speed-analyzer', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/seo-soft/page-speed-analyzer.html'));
+});
+// Page Speed Analyzer soft
+router.post('/api/analyze-speed', analyzePageSpeed);
+
 // SEO Page soft - only frontend interface
 router.get('/seo-page', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/seo-soft/seo-page.html'));
 });
 
-// Page Speed Analyzer soft
-router.get('/page-speed-analyzer', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/seo-soft/page-speed-analyzer.html'));
+// PDF Page soft - only frontend interface
+router.get('/pdf-page', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/pdf/pdf-page.html'));
 });
 
-router.post('/api/analyze-speed', analyzePageSpeed);
+
+
+
+
 
 module.exports = router;
