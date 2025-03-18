@@ -14,24 +14,24 @@ const analyzePageSpeed = async (req, res) => {
         const mobileResult = await axios.get(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile&key=${API_KEY}`);
         const desktopResult = await axios.get(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=desktop&key=${API_KEY}`);
 
+        const extractMetrics = (data) => ({
+            fcp: data.audits['first-contentful-paint'],
+            lcp: data.audits['largest-contentful-paint'],
+            cls: data.audits['cumulative-layout-shift'],
+            fid: data.audits['max-potential-fid'],
+            speedIndex: data.audits['speed-index'],  
+            interactive: data.audits['interactive'],  
+            inputLatency: data.audits['estimated-input-latency']  
+        });
+
         const results = {
             mobile: {
                 score: mobileResult.data.lighthouseResult.categories.performance.score * 100,
-                metrics: {
-                    fcp: mobileResult.data.lighthouseResult.audits['first-contentful-paint'],
-                    lcp: mobileResult.data.lighthouseResult.audits['largest-contentful-paint'],
-                    cls: mobileResult.data.lighthouseResult.audits['cumulative-layout-shift'],
-                    fid: mobileResult.data.lighthouseResult.audits['max-potential-fid']
-                }
+                metrics: extractMetrics(mobileResult.data.lighthouseResult)
             },
             desktop: {
                 score: desktopResult.data.lighthouseResult.categories.performance.score * 100,
-                metrics: {
-                    fcp: desktopResult.data.lighthouseResult.audits['first-contentful-paint'],
-                    lcp: desktopResult.data.lighthouseResult.audits['largest-contentful-paint'],
-                    cls: desktopResult.data.lighthouseResult.audits['cumulative-layout-shift'],
-                    fid: desktopResult.data.lighthouseResult.audits['max-potential-fid']
-                }
+                metrics: extractMetrics(desktopResult.data.lighthouseResult)
             }
         };
 
@@ -47,4 +47,4 @@ const analyzePageSpeed = async (req, res) => {
 
 module.exports = {
     analyzePageSpeed
-}; 
+};
