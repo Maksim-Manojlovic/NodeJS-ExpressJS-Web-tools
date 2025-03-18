@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel to PDF Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<div id="navbar-container"></div>
+<body class="bg-gradient-to-b from-blue-100 to-blue-300">
+    <div class="container mx-auto px-4 py-8 mt-20">
+        <h1 class="text-4xl font-bold text-center mb-12">Excel to PDF Converter</h1>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-4">Upload your Excel file</h2>
+            <input type="file" id="excelFileInput" accept=".xls,.xlsx" class="mb-4">
+            <button id="convertBtn" class="bg-blue-500 text-white px-4 py-2 rounded">Convert to PDF</button>
+            <button id="downloadBtnExcel" class="bg-green-500 text-white px-4 py-2 rounded mt-4 hidden">Download PDF</button>
+            <div id="output" class="mt-4"></div>
+        </div>
+    </div>
+
+    <script src="/js/pdf-soft-js/pdf-excel.js" defer></script>
+    <script src="/js/nav-bar.js"></script>
+</body>
+</html> 

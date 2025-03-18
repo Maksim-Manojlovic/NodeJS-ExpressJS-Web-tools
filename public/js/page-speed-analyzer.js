@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Show results
         resultsDiv.classList.remove('hidden');
-    }
+    }       
 
 
     analyzeBtn.addEventListener('click', async () => {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
             hideLoading();
-            displayResults(data);
+            displayResults(data);                       
         } catch (error) {
             hideLoading();
             showError('Error analyzing page speed. Please try again.');
