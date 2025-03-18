@@ -72,24 +72,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayResults(data) {
-        // Ažuriramo krugove sa skorovima
-        updateScoreCircle(data.mobile.score, mobileScoreCircle, mobileScoreValue);
+        // Prikazujemo desktop rezultate inicijalno
         updateScoreCircle(data.desktop.score, desktopScoreCircle, desktopScoreValue);
-
-        // Display metrics
-        metrics.forEach(metric => {
-            const mobileMetric = data.mobile.metrics[metric];
-            const desktopMetric = data.desktop.metrics[metric];
-
-            if (mobileMetric) {
-                document.getElementById(metric).textContent = formatMetricValue(metric, mobileMetric.numericValue);
-                document.getElementById(metric).className = `metric-value ${getScoreClass(mobileMetric.score * 100)}`;
+        mobileScoreCircle.style.strokeDasharray = "0";
+        mobileScoreCircle.style.strokeDashoffset = "0";
+    
+        // Dodajemo click handler za desktop i mobile sekcije
+        const desktopSection = desktopScoreCircle.closest('.bg-white');
+        const mobileSection = mobileScoreCircle.closest('.bg-white');
+        
+        desktopSection.style.cursor = 'pointer';
+        mobileSection.style.cursor = 'pointer';
+        
+        let isMobileVisible = false;
+        desktopSection.addEventListener('click', () => {
+            if (isMobileVisible) {
+                // Prikazujemo desktop rezultate
+                updateScoreCircle(data.desktop.score, desktopScoreCircle, desktopScoreValue);
+                // Sakrivamo mobile rezultate
+                mobileScoreCircle.style.strokeDasharray = "0";
+                mobileScoreCircle.style.strokeDashoffset = "0";
+                isMobileVisible = false;
             }
         });
-
+    
+        mobileSection.addEventListener('click', () => {
+            if (!isMobileVisible) {
+                // Prikazujemo mobile rezultate
+                updateScoreCircle(data.mobile.score, mobileScoreCircle, mobileScoreValue);
+                // Sakrivamo desktop rezultate
+                desktopScoreCircle.style.strokeDasharray = "0";
+                desktopScoreCircle.style.strokeDashoffset = "0";
+                isMobileVisible = true;
+            }
+        });
+    
+        // Display metrics (možete prilagoditi da se i oni menjaju po potrebi)
+        metrics.forEach(metric => {
+            const desktopMetric = data.desktop.metrics[metric];
+            if (desktopMetric) {
+                document.getElementById(metric).textContent = formatMetricValue(metric, desktopMetric.numericValue);
+                document.getElementById(metric).className = `metric-value ${getScoreClass(desktopMetric.score * 100)}`;
+            }
+        });
+    
         // Show results
         resultsDiv.classList.remove('hidden');
     }
+
 
     analyzeBtn.addEventListener('click', async () => {
         const url = urlInput.value.trim();
