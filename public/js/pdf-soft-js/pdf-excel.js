@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const downloadBtn = document.getElementById("downloadBtnExcel");
     const outputDiv = document.getElementById("output");
 
-    let downloadUrl = null; // Čuvamo URL generisanog PDF-a
+    let downloadUrl = null; 
 
     convertBtn.addEventListener("click", async () => {
         const file = excelFileInput.files[0];
@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 outputDiv.textContent = "Conversion complete! Download your PDF.";
-                downloadUrl = data.downloadUrl; // Čuvamo URL
+                downloadUrl = data.downloadUrl;
 
-                downloadBtn.classList.remove("hidden"); // Prikazujemo dugme za preuzimanje
+                downloadBtn.classList.remove("hidden"); 
             } else {
                 outputDiv.textContent = "Error converting file.";
                 alert("Error converting file.");
@@ -44,7 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     downloadBtn.addEventListener("click", () => {
         if (downloadUrl) {
-            window.location.href = downloadUrl; // Preuzimanje fajla
+            const a = document.createElement('a');
+            a.href = downloadUrl;
+            a.download = 'converted.pdf'; 
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
     });
 });
