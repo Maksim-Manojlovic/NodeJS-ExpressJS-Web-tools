@@ -11,6 +11,7 @@ const { analyzeTechnologies } = require("../controllers/techSpyWapController");
 const { countLinks } = require('../controllers/linkCounterController');
 const { extractH1 } = require('../controllers/h1ExtractorController');
 const { analyzePageSpeed } = require('../controllers/pageSpeedController');
+const { convertExcelToPdf } = require('../controllers/pdfExcelController');
 
 const multerConfig = require("../config/multerConfig");
 const upload = multer();
@@ -57,6 +58,15 @@ router.get('/pdf-page', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/pdf/pdf-page.html'));
 });
 
+// Excel to PDF Converter soft
+router.post('/convert-excel-to-pdf', upload.single('excel'), (req, res) => {
+    convertExcelToPdf(req.file, (err, downloadUrl) => {
+        if (err) {
+            return res.status(500).json({ error: 'Conversion failed' });
+        }
+        res.json({ downloadUrl });
+    });
+});
 
 
 
