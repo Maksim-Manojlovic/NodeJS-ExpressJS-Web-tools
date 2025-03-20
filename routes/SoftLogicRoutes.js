@@ -12,7 +12,7 @@ const { countLinks } = require('../controllers/linkCounterController');
 const { extractH1 } = require('../controllers/h1ExtractorController');
 const { analyzePageSpeed } = require('../controllers/pageSpeedController');
 const { convertExcelToPdf } = require('../controllers/pdfExcelController');
-
+const { convertJpgToPdf } = require('../controllers/pdfJpgController');
 const multerConfig = require("../config/multerConfig");
 const upload = multer();
 
@@ -68,8 +68,12 @@ router.post('/convert-excel-to-pdf', upload.single('excel'), (req, res) => {
     });
 });
 
+// JPG to PDF Converter soft
+router.post('/convert-jpg-to-pdf', upload.array('jpgFiles'), convertJpgToPdf);
 
-
-
+ // PDF JPG Converter soft - only frontend interface
+ router.get('/pdf-jpg', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/pdf/pdf-jpg.html'));
+});
 
 module.exports = router;
