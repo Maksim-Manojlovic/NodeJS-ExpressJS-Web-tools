@@ -13,6 +13,7 @@ const { extractH1 } = require('../controllers/h1ExtractorController');
 const { analyzePageSpeed } = require('../controllers/pageSpeedController');
 const { convertExcelToPdf } = require('../controllers/pdfExcelController');
 const { convertJpgToPdf } = require('../controllers/pdfJpgController');
+const { convertWordToPdf } = require('../controllers/pdfWordController');
 const multerConfig = require("../config/multerConfig");
 const upload = multer();
 
@@ -75,5 +76,8 @@ router.post('/convert-jpg-to-pdf', upload.array('jpgFiles'), convertJpgToPdf);
  router.get('/pdf-jpg', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/pdf/pdf-jpg.html'));
 });
+
+// Word to PDF Converter soft
+router.post('/convert-word-to-pdf', upload.single('word'), convertWordToPdf);
 
 module.exports = router;
