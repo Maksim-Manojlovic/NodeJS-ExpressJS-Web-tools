@@ -11,7 +11,7 @@ exports.convertJpgToPdf = (req, res) => {
     const pdfDoc = new PDFDocument();
     const outputPath = path.join(__dirname, '../uploads', `${Date.now()}-converted.pdf`);
 
-    // Kreiranje PDF-a
+    
     pdfDoc.pipe(fs.createWriteStream(outputPath));
 
     files.forEach(file => {

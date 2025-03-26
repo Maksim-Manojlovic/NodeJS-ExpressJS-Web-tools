@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         try {
-            const response = await fetch("/convert-jpg-to-pdf", {
+            const response = await fetch("http://localhost:5000/convert-jpg-to-pdf", {
                 method: "POST",
                 body: formData
             });
