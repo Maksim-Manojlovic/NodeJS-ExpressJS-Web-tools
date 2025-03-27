@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<div id="navbar-container"></div>
+
+<body>
+    
+<!-- First Section -->
+<section class="py-16 px-10">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-10">Our Softwares</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+            <!-- Image Softwares -->
+            <div class=" w-full border border-gray-300 rounded-lg p-6 bg-white hover:bg-gradient-to-b  hover:from-white hover:to-orange-400 hover:text-black transition-all shadow-lg">
+                <h3 class="text-lg font-semibold">
+                    <a href="image-optimizer.html" class="text-black hover:underline">Image Optimizer</a>
+                </h3>
+                <p class="text-gray-600">Optimize images efficiently to improve web performance.</p>
+            </div>
+            <!-- SEO Softwares -->
+            <div class="w-full border border-gray-300 rounded-lg p-6 bg-white hover:bg-gradient-to-b   hover:from-white hover:to-blue-400 hover:text-black transition-all shadow-lg">
+                 <h3 class="text-lg font-semibold">
+                    <a href="seo-soft/seo-page.html" class="text-black hover:underline">PDF Extractor</a>
+                </h3>
+                <p class="text-gray-600">Extract informations from PDFs with one click.</p>
+            </div>
+            <!-- PDF Softwares -->
+            <div class="w-full border border-gray-300 rounded-lg p-6 bg-white hover:bg-gradient-to-b   hover:from-white hover:to-green-400 hover:text-black transition-all shadow-lg">
+                <h3 class="text-lg font-semibold">
+                    <a href="/pdf/pdf-page.html" class="text-black hover:underline">PDF Compressor</a>
+                </h3>
+                <p class="text-gray-600">Compress your PDF files</p>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/components/nav-bar.js"></script>
+</body>
+</html>
