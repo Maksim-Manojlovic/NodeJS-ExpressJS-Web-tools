@@ -18,4 +18,4 @@ async function importBodyContent(url, targetElementId) {
 }
 
 
-importBodyContent("pages/about-us.html", "about-us");
+importBodyContent("components/about-us.html", "about-us");
